@@ -24,4 +24,4 @@ jobs:
         ruby -e "$(curl -s https://undercover-ci.com/uploader.rb)" -- \
           --repo ${{ github.repository }} \
           --commit ${{ github.workflow_sha }} \
-          --lcov random-rails-test/coverage/lcov/random-rails-test.lcov
+          --lcov coverage/lcov/codecov_example_app.lcov
