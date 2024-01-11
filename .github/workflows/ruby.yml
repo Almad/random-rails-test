@@ -16,6 +16,7 @@ jobs:
         # other pre-requisite setup steps...
         gem install bundler
         bundle install --jobs 4 --retry 3
+        bundle exec rails webpacker:compile
         bundle exec rake test
         ruby -e "$(curl -s https://undercover-ci.com/uploader.rb)" -- \
           --repo ${{ github.repository }} \
