@@ -5,19 +5,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Ruby 3.2
+    - name: Set up Ruby 3.0.6
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.2
+        ruby-version: 3.0.6
     - name: Build and test with Rake
       env:
         RAILS_ENV: test
       run: |
         # other pre-requisite setup steps...
         gem install bundler
+        npm install yarn
+        yarn install
         bundle install --jobs 4 --retry 3
+        bundle exec rails webpacker:install
+        NODE_OPTIONS=--openssl-legacy-provider bundle exec rails webpacker:compile
         bundle exec rake test
         ruby -e "$(curl -s https://undercover-ci.com/uploader.rb)" -- \
           --repo ${{ github.repository }} \
           --commit ${{ github.workflow_sha }} \
-          --lcov coverage/lcov/$repository-name.lcov
+          --lcov coverage/lcov/random-rails-test.lcov
