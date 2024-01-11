@@ -5,10 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Ruby 3.0
+    - name: Set up Ruby 3.0.6
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.0
+        ruby-version: 3.0.6
     - name: Build and test with Rake
       env:
         RAILS_ENV: test
