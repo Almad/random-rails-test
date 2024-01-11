@@ -6,4 +6,8 @@ class WelcomeController < ApplicationController
       puts "oh no somebody call TDD SWAT"
     end
   end
+  
+  def random
+    puts "this is untested totally, right?"
+  end
 end
