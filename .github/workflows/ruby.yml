@@ -15,7 +15,10 @@ jobs:
       run: |
         # other pre-requisite setup steps...
         gem install bundler
+        npm install yarn
+        yarn install
         bundle install --jobs 4 --retry 3
+        bundle exec rails webpacker:install
         bundle exec rails webpacker:compile
         bundle exec rake test
         ruby -e "$(curl -s https://undercover-ci.com/uploader.rb)" -- \
